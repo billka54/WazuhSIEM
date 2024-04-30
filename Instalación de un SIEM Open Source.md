@@ -6,46 +6,45 @@ En mi caso voy a usar un Ubuntu Server, en el que vamos a instalar Docker para q
 
 Pasos para instalar Docker y Docker-compose:
 
-<center> sudo apt update </center>
+**sudo apt update**
 
-
-<center> sudo apt install docker.io docker-compose -y </center>
+**sudo apt install docker.io docker-compose -y**
 
 Para comprobar que tenemos docker correctamente instalado en nuestro sistema ejecutamos el siguiente comando:
 
-<center> docker --version</center>
+**docker --version**
 
 Una vez lo tenemos instalado correctamente vamos a clonar un repositorio de Github dónde se encuentra la herramienta Wazuh:
 
-<center> git clone https://github.com/wazuh/wazuh-docker.git -b v4.4.5</center>
+**git clone https://github.com/wazuh/wazuh-docker.git -b v4.4.5**
 
 Una vez tenemos el repositorio clonado veremos que tenemos una carpeta llamada **wazuh-docker**, dentro de ella entramos a otra carpeta llamada **single-node**.
 
 Ahora debemos instalar los certificados correspondientes para que todo funcione, con el comando:
 
-<center> docker-compose -f generate-indexer-certs.yml run --rm generator</center>
+**docker-compose -f generate-indexer-certs.yml run --rm generator**
 
-Es hora de ejcutar nuestro docker:
+Es hora de ejcutar nuestro contenedor:
 
-<center> docker-compose up -d </center>
+**docker-compose up -d **
 
 La instalación tardará un rato, hay que tener paciencia.
 
 Para ver que la instalación se ha realizado correctamente escribimos:
 
-<center> docker stats</center>
+**docker stats**
 
 
-![](DockerStats.png)
+![](Images/DockerStats.png)
 
 # 2. ACCEDIENDO A WAZUH
 
 Ahora vamos a ir a nuestro navegador web y vamos a introducir la dirección IP de nuestra máquina virtual:
 
-![](IpA.png)
+![](Images/IpA.png)
 
 
-![](PanelWazuh.png)
+![](Images/PanelWazuh.png)
 
 Las credenciales por defecto son las siguientes:
 
@@ -54,32 +53,32 @@ Las credenciales por defecto son las siguientes:
 
 El siguiente paso es instalar un agente a un dispositivo que nosotros queramos:
 
-![](AddAgent.png)
+![](Images/AddAgent.png)
 
 Ahora toca configurar un agente para un dispositivo que nosotros queramos. En mi caso voy a configurar un ordenador Windows:
 
-![](ConfiguracionAgente.png)
+![](Images/ConfiguracionAgente.png)
 
 En mi caso debo hacerlo desde PowerShell con permisos elevados:
 
-![](Powershell.png)
+![](Images/Powershell.png)
 
 Finalmente podemos ver que el agente se ha instalado correctamente y esta funcionando:
 
-![](AgenteCorrecto.png)
+![](Images/AgenteCorrecto.png)
 
 Ahora si entramos dentro del equipo el cual le hemos instalado el agente podemos visualizar muchas tareas para tener un mayor control y gestión sobre el equipo:
 
 
-![](Dashboard.png)
+![](Images/Dashboard.png)
 
 También podemos ver alertas de seguridad:
 
-![](SecurityEvents.png)
+![](Images/SecurityEvents.png)
 
 Y los más importante de todo es que podemos ver vulnerabilidades y riesgos basados en la matriz de MITTRE ATTACK:
 
-![](Vulnerabilidades.png)
+![](IMages/Vulnerabilidades.png)
 
-Os he enseñado un poco como funciona la herramienta, es muchísimo mas compleja y se pueden configurar muchos parámetros más. Es cuestión de ir probando e ir instalando agentes. De esta manera los equipos estarán más protegidos ya que tendréis un mayor conocimiento sobre sus vulnerabilidades y riesgos los cuales se pueden mitigar.
+Os he enseñado un poco como funciona la herramienta, es muchísimo mas compleja y se pueden configurar muchos parámetros más. Es cuestión de ir probando e ir instalando agentes. De esta manera los equipos estarán más protegidos ya que tendréis una mayor visibilidad sobre sus vulnerabilidades y riesgos los cuales se pueden mitigar.
 
